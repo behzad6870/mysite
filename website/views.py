@@ -12,6 +12,10 @@ def about_view(requests):
 def contact_view(requests):
     return render(requests,'website/contact.html')
 
+def test_view(requests):
+    context={'name':'behzad','last_name':'mirza'}
+    return render(requests,'website/test.html',context)
+
 
 
 
