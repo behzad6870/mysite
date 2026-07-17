@@ -1,3 +1,14 @@
 from django.contrib import admin
 
-# Register your models here.
+from blog.models import Post
+
+
+#@admin.register(Post)
+class PostAdmin(admin.ModelAdmin):
+    date_hierarchy = "created_date"
+    #empty_value_display='_empty_'
+    #fields=('title',)
+    list_display=('title','counted_views','status','published_date','created_date')
+    list_filter=('status','counted_views')
+    search_fields=('content','title')
+admin.site.register(Post,PostAdmin)
