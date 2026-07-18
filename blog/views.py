@@ -8,7 +8,9 @@ def blog_view(requests):
     return render(requests,'blog/blog-home.html',context)
 
 def single_block(requests,pid):
-    post=get_object_or_404(Post,pk=pid)
+    posts=Post.objects.filter(status=1)
+    #post=get_object_or_404(posts,pk=pid)
+    post=get_object_or_404(Post,pk=pid,status=1)
     if get_object_or_404(Post,pk=pid):
         post.counted_views+=1
         post.save()
