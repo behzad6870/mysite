@@ -7,8 +7,13 @@ def blog_view(requests):
     context={'posts':posts}
     return render(requests,'blog/blog-home.html',context)
 
-def single_block(requests):
-    return render(requests,'blog/blog-single.html')
+def single_block(requests,pid):
+    post=get_object_or_404(Post,pk=pid)
+    if get_object_or_404(Post,pk=pid):
+        post.counted_views+=1
+        post.save()
+    context={'post':post}
+    return render(requests,'blog/blog-single.html',context)
 def test_view(requests,pid):
     #post=Post.objects.get(id=pid)
     post=get_object_or_404(Post,pk=pid)
