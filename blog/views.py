@@ -8,7 +8,7 @@ def blog_view(requests):
 
 def single_block(requests):
     return render(requests,'blog/blog-single.html')
-def test_view(requests):
+def test_view(requests,name,last_name,age):
     posts=Post.objects.all()
-    context={'posts':posts}
+    context={'posts':posts,'name':name,'last_name':last_name,'age':age}
     return render(requests,'test.html',context)
