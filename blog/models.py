@@ -23,6 +23,11 @@ class Post(models.Model):
     updated_date=models.DateTimeField(auto_now=True)
     def __str__(self):
         return f"{self.title} [ {self.id}]"
+    def snippet(self):
+        if len (self.content)>200:
+            return self.content[ :200] + "..."
+        else:
+            return self.content
     
     class Meta:
         ordering=['-created_date']
