@@ -13,7 +13,7 @@
 				</h1>
 				<p class="text-white link-nav"><a href="{% url 'website:index' %}">Home </a> <span
 						class="lnr lnr-arrow-right"></span><a href="{% url 'blog:index' %}">Blog </a> <span
-						class="lnr lnr-arrow-right"></span>  {{post.title}}</p>
+						class="lnr lnr-arrow-right"></span> {{post.title}}</p>
 			</div>
 		</div>
 	</div>
@@ -34,13 +34,14 @@
 					<div class="col-lg-3  col-md-3 meta-details">
 						<ul class="tags">
 							<li><a href="#">{{post.category.all|join:" , "}}</a></li>
-							
-							
-							
+
+
+
 						</ul>
 						<div class="user-details row">
-							<p class="user-name col-lg-12 col-md-12 col-6"><a href="#">{{post.author.get_full_name}}</a> <span
-									class="lnr lnr-user"></span></p>
+							<p class="user-name col-lg-12 col-md-12 col-6"><a href="#">{{post.author.get_full_name}}</a>
+								<span class="lnr lnr-user"></span>
+							</p>
 							<p class="date col-lg-12 col-md-12 col-6"><a href="#">{{post.published_date}}</a> <span
 									class="lnr lnr-calendar-full"></span></p>
 							<p class="view col-lg-12 col-md-12 col-6"><a href="#">{{post.counted_views}}</a> <span
@@ -60,34 +61,48 @@
 						<p class="excert">
 							{{post.content}}
 						</p>
-						
-						
+
+
 					</div>
-					
+
 				</div>
+				
 				<div class="navigation-area">
+					
 					<div class="row">
+						
 						<div
+						    
 							class="col-lg-6 col-md-6 col-12 nav-left flex-row d-flex justify-content-start align-items-center">
+							
+							{% if post_prev %}
 							<div class="thumb">
+
 								<a href="#"><img class="img-fluid" src="{% static 'img/blog/prev.jpg' %}" alt=""></a>
 							</div>
 							<div class="arrow">
 								<a href="#"><span class="lnr text-white lnr-arrow-left"></span></a>
 							</div>
 							<div class="detials">
+								
 								<p>Prev Post</p>
-								<a href="#">
-									<h4>Space The Final Frontier</h4>
+								<a href="{% url 'blog:single' pid=post_prev.id %}">
+									<h4>{{post_prev.title}}</h4>
 								</a>
 							</div>
 						</div>
+						         {% endif %}
+								 
 						<div
+						    
 							class="col-lg-6 col-md-6 col-12 nav-right flex-row d-flex justify-content-end align-items-center">
+
+							{% if post_next %}
 							<div class="detials">
+								
 								<p>Next Post</p>
-								<a href="#">
-									<h4>Telescopes 101</h4>
+								<a href="{% url 'blog:single' pid=post_next.pk %}">
+									<h4>{{post_next.title}}</h4>
 								</a>
 							</div>
 							<div class="arrow">
@@ -96,9 +111,13 @@
 							<div class="thumb">
 								<a href="#"><img class="img-fluid" src="{% static 'img/blog/next.jpg' %}" alt=""></a>
 							</div>
+							
 						</div>
+						
 					</div>
+					{% endif %}
 				</div>
+				
 				<div class="comments-area">
 					<h4>05 Comments</h4>
 					<div class="comment-list">
