@@ -66,16 +66,15 @@
 					</div>
 
 				</div>
-				
+
 				<div class="navigation-area">
-					
+
 					<div class="row">
-						
+
 						<div
-						    
 							class="col-lg-6 col-md-6 col-12 nav-left flex-row d-flex justify-content-start align-items-center">
-							
-							{% if post_prev %}
+
+
 							<div class="thumb">
 
 								<a href="#"><img class="img-fluid" src="{% static 'img/blog/prev.jpg' %}" alt=""></a>
@@ -83,27 +82,40 @@
 							<div class="arrow">
 								<a href="#"><span class="lnr text-white lnr-arrow-left"></span></a>
 							</div>
+
 							<div class="detials">
-								
+
 								<p>Prev Post</p>
+								{% if post_prev %}
 								<a href="{% url 'blog:single' pid=post_prev.id %}">
 									<h4>{{post_prev.title}}</h4>
 								</a>
+								{% else %}
+								<a href="#">
+									<h4>not post yet</h4>
+								</a>
+								{% endif %}
 							</div>
 						</div>
-						         {% endif %}
-								 
+
+
 						<div
-						    
 							class="col-lg-6 col-md-6 col-12 nav-right flex-row d-flex justify-content-end align-items-center">
 
-							{% if post_next %}
+
 							<div class="detials">
-								
+
 								<p>Next Post</p>
+								{% if post_next %}
 								<a href="{% url 'blog:single' pid=post_next.pk %}">
 									<h4>{{post_next.title}}</h4>
 								</a>
+								{% else %}
+								<a href="#">
+									<h4>not post yet</h4>
+								</a>
+								{% endif %}
+
 							</div>
 							<div class="arrow">
 								<a href="#"><span class="lnr text-white lnr-arrow-right"></span></a>
@@ -111,13 +123,13 @@
 							<div class="thumb">
 								<a href="#"><img class="img-fluid" src="{% static 'img/blog/next.jpg' %}" alt=""></a>
 							</div>
-							
+
 						</div>
-						
+
 					</div>
-					{% endif %}
+
 				</div>
-				
+
 				<div class="comments-area">
 					<h4>05 Comments</h4>
 					<div class="comment-list">
