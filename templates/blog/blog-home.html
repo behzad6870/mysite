@@ -121,7 +121,8 @@
 						</a>
 						<p class="excert">
 							<!--{{post.content|truncatewords:100}}-->
-							{{post.snippet_word}}
+							<!--{{post.snippet_word}}-->
+							{{post.content|truncatechars:100}}
 						</p>
 						<a href="{% url 'blog:single' pid=post.id %}" class="primary-btn">View More</a>
 					</div>
